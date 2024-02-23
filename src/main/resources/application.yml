@@ -1,0 +1,45 @@
+#jwt.sessionTime: 86400
+logging:
+  level:
+    org.springframework.data.mongodb.core.ReactiveMongoTemplate: DEBUG
+
+spring.data.mongodb.auto-index-creation: true
+
+server:
+  port: 8082
+spring:
+  config:
+    activate:
+      on-profile: default
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: medium-db
+      username: devandre
+      password: password
+      authentication-database: admin
+
+  docker:
+    compose:
+      file: ./docker/docker-compose.yml
+      enabled: true
+
+# jwt
+jwt:
+  secret: faZuBhZQGeZ3jSUW/SVabPVik49EpuQEzSOHMmBKQnrRWTQRGxTlW4yQnBSJIYKk
+  expiration: 10
+
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
+  data:
+    mongodb:
+      host: mongo
+      port: 27017
+      database: medium-db
+      username: devandre
+      password: password
+      authentication-database: admin
